@@ -5,28 +5,44 @@ let operator = "";
 let previousInput = "";
 let currentInput = "";
 let isResultDisplayed = false;
+let result = "";
 
 
 buttons.forEach((button) => {
     button.addEventListener("click", function(){
         console.log('click');
-        if(isResultDisplayed){
-            display.textContent = ""
-            operator = ""
-            previousInput = ""
-            currentInput = ""
-            isResultDisplayed = false
+        if (!operators.includes(button.textContent) && button.textContent !== "=") {
+            if (isResultDisplayed) {
+                display.textContent = "";
+                isResultDisplayed = false;
+            }
+            
+            if (button.textContent.includes(".") && display.textContent.includes(".")) {
+                return;
+            }
         }
         if(operators.includes(button.textContent)){
-            display.textContent = "";
-            previousInput = currentInput;
-            currentInput = "";
-            operator = button.textContent;
+            if(!isResultDisplayed){
+                display.textContent = "";
+                previousInput = currentInput;
+                currentInput = "";
+                operator = button.textContent;
+            }else{
+                previousInput = result;
+                currentInput = "";
+                operator = button.textContent;
+                display.textContent = "";
+            }
         }else if(button.textContent === "="){
+            if (previousInput === "" || currentInput === "" || operator === "") {
+                return;
+            }
             console.log(previousInput);
             console.log(currentInput);
             isResultDisplayed = true;
-            operate(Number(previousInput), operator, Number(currentInput));
+            result = operate(Number(previousInput), operator, Number(currentInput));
+            previousInput = result.toString();
+            currentInput = "";
         }
         if(!operators.includes(button.textContent) && button.textContent != "="){
             if(button.textContent.includes(".") && display.textContent.includes(".")){
@@ -65,17 +81,20 @@ function power(a, b){
 
 function operate(a, operator, b){
     console.log("operating")
+    let result;
     if(operator === "+"){
-        return display.textContent = add(a, b);
+        result = add(a, b);
     }else if(operator === "-"){
-        return display.textContent = substract(a, b);
+        result = substract(a, b);
     }else if(operator === "*"){
-        return display.textContent = multiply(a, b);
+        result = multiply(a, b);
     }else if(operator === "/"){
-        return display.textContent = divide(a, b);
+        result = divide(a, b);
     }else if(operator === "^"){
-        return display.textContent = power(a, b);
+        result = power(a, b);
     }
+    display.textContent = result;
+    return result;
 }
 
 function clearButton(){
