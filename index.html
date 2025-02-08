@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="main">
         <div class="calculator">
             <div class="display">
-                <p class="display-label">23131</p>
+                <p class="display-label"></p>
             </div>
             <div class="buttons">
-                <button class="btn">AC</button>
-                <button class="btn">-/+</button>
+                <button class="btn-clear" onclick="clearButton()">AC</button>
+                <button class="btn-negative" onclick="toggleSign()">-/+</button>
                 <button class="btn">/</button>
                 <button class="btn">^</button>
                 <button class="btn">9</button>
