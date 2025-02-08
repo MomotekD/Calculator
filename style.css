@@ -21,13 +21,16 @@
 }
 
 .display {
+    display: flex;
+    align-items: center;
     width: 16vw;
+    height: 5vw;
     box-shadow: 2px 5px 5px rgb(156, 156, 156);
     max-width: 190px;
+    min-width: 190px;
     background-color: rgb(234, 234, 234);
     border-radius: 25px;
     margin-top: 3%;
-    padding-block: 10%;
     font-size: 3vh;
     padding-inline: 8%;
 }
@@ -35,6 +38,7 @@
 .buttons {
     width: 20vw;
     max-width: 220px;
+    min-width: 220px;
     padding: 5%;
     display: flex;
     flex-wrap: wrap;
@@ -51,7 +55,6 @@ button {
 }
 
 button:hover{
-    padding: 25px;
     opacity: 100%;
     cursor: pointer;
 }
